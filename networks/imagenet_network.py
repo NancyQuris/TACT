@@ -1,5 +1,4 @@
 from copy import deepcopy
-import torch 
 import torch.nn as nn
 import torchvision.models as models
 from .identity import Identity
@@ -23,13 +22,9 @@ class Network(nn.Module):
         # by default, model pretrained on imagenet is loaded
         model = network_class(weights=PRETRAINED_WEIGHT_DICT[model_name])
         
-        if model_name.startswith('resnet'):
-            self.classifier = deepcopy(model.fc)
-            model.fc = Identity()
-        elif model_name.startswith('vit'):
-            self.classifier = deepcopy(model.heads)
-            self.classifier.weight = self.classifier.head.weight
-            model.heads = Identity()
+        self.classifier = deepcopy(model.heads)
+        self.classifier.weight = self.classifier.head.weight
+        model.heads = Identity()
         self.featurizer = model 
         
         self.n_output = N_OUTPUT[model_name]

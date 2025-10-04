@@ -97,7 +97,7 @@ if __name__ == '__main__':
                         help='experiment name, set as . for automatic naming.')
     parser.add_argument('--data_dir', type=str, default='/path/to/data_dir/',
                         help='path to data dir')
-    parser.add_argument('--model', type=str, default='vit_b_32')
+    parser.add_argument('--model', type=str, default='vit_b_32', choices=['vit_b_32', 'vit_b_16'])
     # Computation
     parser.add_argument('--no-cuda', action='store_true', default=False,
                         help='disables CUDA use')

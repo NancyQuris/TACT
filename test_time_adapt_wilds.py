@@ -129,7 +129,7 @@ if __name__ == '__main__':
                     help='random seed, set as -1 for random.')
     parser.add_argument("--eval_batch_size", default=256, type=int)
     parser.add_argument('--model_path', type=str, default=None, help='path to pretrained model')
-    parser.add_argument('--use_published_model', action="store_true")
+    parser.add_argument('--use_published_model', action="store_true") # only for models downloaded from wilds worksheet
     
 
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
         args.seed = int(torch.randint(0, 2 ** 32 - 1, (1,)).item())
     
     model_kwargs = {}
-    if args.model == 'vitb32':
+    if args.model in ['vitb32', 'vitb16']:
         if args.dataset == 'camelyon':
             image_size = 96 
         elif args.dataset == 'birdcalls':
@@ -154,10 +154,7 @@ if __name__ == '__main__':
         model_kwargs['image_size'] = image_size
 
     # experiment directory setup
-    if args.use_published_model:
-        base_model_name = args.model_path.split('/')[-1].split('.')[0]
-    else:
-        base_model_name = args.model_path.split('/')[-2].split('.')[0]
+    base_model_name = args.model_path.split('.')[0]
     args.experiment = f"{args.dataset}/bs{args.eval_batch_size}/{args.algorithm}/{base_model_name}" \
         if args.experiment == '.' else args.experiment
     

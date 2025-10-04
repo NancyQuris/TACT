@@ -1,13 +1,13 @@
 from copy import deepcopy
 import torch.nn as nn 
-from torchvision.models import vit_b_32
+from torchvision.models import vit_b_16
 
 from .identity import Identity
 
 class Network(nn.Module):
     def __init__(self, num_classes, pretrained, group_num=None, weights=None, **kwargs):
         super(Network, self).__init__()
-        vit = vit_b_32(pretrained=pretrained, **kwargs)    
+        vit = vit_b_16(pretrained=pretrained, **kwargs)    
         del vit.heads
         vit.heads = Identity()
         

@@ -28,16 +28,6 @@ def map_dict(dict, dataset):
             new_dict[new_key2] = v
     return new_dict
 
-''' load model checkpoint from a given path'''
-def load_model(model_path, use_published_model, networkC, n_class, args):
-    if use_published_model:
-        state_dict = map_dict(torch.load(model_path)['algorithm'], args.dataset)
-    else:
-        state_dict = torch.load(model_path)
-    model = networkC(n_class, pretrained=False, group_num=args.group_num, weights=None)
-    model.load_state_dict(state_dict)
-    return model
-
 class Logger(object):
     def __init__(self, filename):
         self.terminal = sys.stdout
