@@ -86,7 +86,7 @@ To perform test-time adaptation on ImageNet-R and ImageNet-V2, run
 ``` 
 
 ### Quick hyperparameter search for TACT
-Instead of generating augmented data each time for every `num_aug` and `num_pcs`, we implement a quick hyperparameter search version for TACT where the augmented data is saved for subsequent hyperparameter search. 
+Instead of generating augmented data each time for every `num_aug` and `num_pcs` and performing eigendecomposition for every `num_pcs` when `num_aug` is the same, we implement a quick hyperparameter search version for TACT where the augmented data and eigenvectors are saved for subsequent hyperparameter search. 
 
 For Birdcalls and Camelyon17, run 
 ```
