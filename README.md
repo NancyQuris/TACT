@@ -46,7 +46,7 @@ To prepare for the datasets,
 - ImageNet-V2 will be downloaded via the dependencies installation mentioned above.
 
 ### Preparing Models for Adaptation
-We include the models used for Birdcalls and Camelyon in the release. `main.py` was used to train the models. 
+We include the models used for Birdcalls and Camelyon in the [release](https://github.com/NancyQuris/TACT/releases/tag/v1.0). `main.py` was used to train the models. 
 
 The model used for CivilComments can be downloaded via this [link](https://worksheets.codalab.org/rest/bundles/0x17807ae09e364ec3b2680d71ca3d9623/contents/blob/best_model.pth).
 
