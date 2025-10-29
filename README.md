@@ -1,6 +1,6 @@
 # Test-Time Adaptation by Causal Trimming 
 This repository contains the implementation of the TACT algorithm and empirical studies in Test-Time Adaptation by Causal Trimming in NeurIPS 2025. 
-The full paper can be found at https://arxiv.org/abs/2510.11133. 
+The full paper can be found at https://openreview.net/forum?id=zFGdHL9pcD. 
 
 ## Overview
 A primary cause of performance degradation under distribution shifts is the model’s reliance on features that lack a direct causal relationship with the prediction targets. 
@@ -119,7 +119,15 @@ For ImageNet-R and ImageNet-V2, run
 ### GradCAM Visualization
 `visualization.ipynb` contain the code to visualize original predictions and predictions made by TACT. 
 
-<!-- ## Citation 
+## Citation 
 If you find our paper useful, you are welcome to cite it as
 ```
-``` -->
+@inproceedings{
+liu2025testtime,
+title={Test-Time Adaptation by Causal Trimming},
+author={Yingnan Liu and Rui Qiao and Mong-Li Lee and Wynne Hsu},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=zFGdHL9pcD}
+}
+``` 
