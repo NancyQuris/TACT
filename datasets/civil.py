@@ -12,8 +12,12 @@ MAX_TOKEN_LENGTH = 300
 NUM_CLASSES = 2
 PRETRAINED = True
 
-def initialize_bert_transform(args, args_dict=False):
-    tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
+def initialize_bert_transform(args):
+    model = args.model
+    if model == 'bert':
+        tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
+    else:
+        tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
     def transform(text):
         tokens = tokenizer(
             text,
@@ -21,11 +25,18 @@ def initialize_bert_transform(args, args_dict=False):
             truncation=True,
             max_length=MAX_TOKEN_LENGTH,
             return_tensors='pt')
-        x = torch.stack(
-            (tokens['input_ids'],
-                tokens['attention_mask']),
-            dim=2)
-        x = torch.squeeze(x, dim=0)
+        if model == 'bert':
+            x = torch.stack(
+                (tokens['input_ids'],
+                 tokens['attention_mask'],
+                 tokens['token_type_ids']),
+                dim=2)
+        else:
+            x = torch.stack(
+                (tokens['input_ids'],
+                 tokens['attention_mask']),
+                dim=2)
+        x = torch.squeeze(x, dim=0) # First shape dim is always 1
         return x
     return transform
 
